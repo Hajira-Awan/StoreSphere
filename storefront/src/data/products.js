@@ -99,6 +99,12 @@ function buildProduct(id) {
   // catalog with no real product photography) but seeded so the same product
   // always gets the same image across reloads — a placeholder, not random noise.
   const image = `https://picsum.photos/seed/cadence-${category}-${id}/600/600`;
+  const images = [
+    image,
+    `https://picsum.photos/seed/cadence-${category}-${id}-alt1/600/600`,
+    `https://picsum.photos/seed/cadence-${category}-${id}-alt2/600/600`,
+    `https://picsum.photos/seed/cadence-${category}-${id}-alt3/600/600`,
+  ];
 
   return {
     id,
@@ -109,6 +115,7 @@ function buildProduct(id) {
     inStock,
     rating,
     image,
+    images,
     reviewCount: Math.floor(range(4, 380)),
     description: `The ${brand} ${name} is built for listeners who care about the details — precise engineering, honest materials, and a sound signature that stays out of the way of the music.`,
     specs: specsFor(category),

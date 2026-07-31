@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart, Check } from 'lucide-react';
 import { StarRating } from './ui/StarRating';
 import { useCart } from '../hooks/useCart';
@@ -64,7 +65,7 @@ function AddToCartButton({ product }) {
   const [justAdded, setJustAdded] = useState(false);
 
   const handleClick = () => {
-    addItem(product.id);
+    addItem(product);
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 1400);
   };
@@ -101,12 +102,16 @@ export function ProductCard({ product, view = 'grid' }) {
         className="group flex gap-4 rounded-lg border border-[--color-line] p-4
           transition-all duration-200 hover:border-[--color-accent] hover:shadow-[0_0_0_1px_var(--color-accent),0_8px_20px_-8px_rgba(181,101,45,0.35)]"
       >
-        <ProductImage product={product} className="w-24 h-24 shrink-0" />
+        <Link to={`/product/${product.id}`} className="shrink-0 group-hover:opacity-90">
+          <ProductImage product={product} className="w-24 h-24" />
+        </Link>
         <div className="flex-1 min-w-0 flex flex-col gap-1">
           <p className="text-xs uppercase tracking-wide text-[--color-ink-faint]">
             {product.brand} · {product.category}
           </p>
-          <h3 className="font-serif text-lg text-[--color-ink] truncate">{product.name}</h3>
+          <Link to={`/product/${product.id}`} className="hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent] rounded">
+            <h3 className="font-serif text-lg text-[--color-ink] truncate">{product.name}</h3>
+          </Link>
           <StarRating rating={product.rating} reviewCount={product.reviewCount} />
           <div className="flex flex-wrap gap-x-3 gap-y-0.5 font-mono text-[11px] text-[--color-ink-faint]">
             {Object.entries(product.specs).slice(0, 2).map(([k, v]) => (
@@ -134,7 +139,9 @@ export function ProductCard({ product, view = 'grid' }) {
         hover:shadow-[0_0_0_1px_var(--color-accent),0_12px_24px_-12px_rgba(181,101,45,0.35)]"
     >
       <div className="relative">
-        <ProductImage product={product} className="aspect-square w-full" />
+        <Link to={`/product/${product.id}`} className="block group-hover:opacity-90">
+          <ProductImage product={product} className="aspect-square w-full" />
+        </Link>
         <div className="absolute top-2 right-2">
           <WishlistButton productId={product.id} />
         </div>
@@ -142,7 +149,9 @@ export function ProductCard({ product, view = 'grid' }) {
       <p className="text-xs uppercase tracking-wide text-[--color-ink-faint] mt-1">
         {product.brand} · {product.category}
       </p>
-      <h3 className="font-serif text-base leading-snug text-[--color-ink]">{product.name}</h3>
+      <Link to={`/product/${product.id}`} className="hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent] rounded inline-block">
+        <h3 className="font-serif text-base leading-snug text-[--color-ink]">{product.name}</h3>
+      </Link>
       <StarRating rating={product.rating} reviewCount={product.reviewCount} size={12} />
       <div className="flex flex-wrap gap-x-3 gap-y-0.5 font-mono text-[11px] text-[--color-ink-faint]">
         {Object.entries(product.specs).slice(0, 2).map(([k, v]) => (

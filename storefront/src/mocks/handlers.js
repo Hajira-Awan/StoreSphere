@@ -70,6 +70,12 @@ export const handlers = [
     if (!product) {
       return HttpResponse.json({ message: 'Product not found' }, { status: 404 });
     }
-    return HttpResponse.json(product);
+    
+    // Find related products (same category, different id)
+    const relatedProducts = PRODUCTS
+      .filter((p) => p.category === product.category && p.id !== product.id)
+      .slice(0, 4);
+
+    return HttpResponse.json({ ...product, relatedProducts });
   }),
 ];
