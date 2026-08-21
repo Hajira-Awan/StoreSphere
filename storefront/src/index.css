@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* StoreSphere design tokens — light mode (bright) */
+  --color-bg: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #FDF3E9;
+  --color-ink: #221D17;
+  --color-ink-muted: #756D5F;
+  --color-ink-faint: #A79D8B;
+  --color-line: #EEE7DA;
+  --color-accent: #E8722C;
+  --color-accent-strong: #CE5C1B;
+}
+
+.dark {
+  /* StoreSphere design tokens — dark mode */
+  --color-bg: #121212;
+  --color-surface: #1E1E1E;
+  --color-surface-hover: #2C2C2C;
+  --color-ink: #FFFFFF;
+  --color-ink-muted: #A3A3A3;
+  --color-ink-faint: #7A7A7A;
+  --color-line: #333333;
+  --color-accent: #E8722C;
+  --color-accent-strong: #F29C68;
+}
+
+
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-line: var(--color-line);
+  --color-accent: var(--color-accent);
+  --color-accent-strong: var(--color-accent-strong);
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
